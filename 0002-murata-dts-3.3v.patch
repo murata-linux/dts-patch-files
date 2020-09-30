@@ -120,10 +120,10 @@ index 00000000..7985b59
 +#include "imx6qdl-sabresd-btwifi-m2.dtsi"
 diff --git a/arch/arm/boot/dts/imx6qdl-sabresd-btwifi-m2.dtsi b/arch/arm/boot/dts/imx6qdl-sabresd-btwifi-m2.dtsi
 new file mode 100644
-index 00000000..a74bad0
+index 00000000..1b3632e
 --- /dev/null
 +++ b/arch/arm/boot/dts/imx6qdl-sabresd-btwifi-m2.dtsi
-@@ -0,0 +1,103 @@
+@@ -0,0 +1,104 @@
 +/*
 + * Copyright (C) 2015 Freescale Semiconductor, Inc.
 + *
@@ -214,6 +214,7 @@ index 00000000..a74bad0
 +	#size-cells = <0>;
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&pinctrl_wifi>;
++	enable-sdio-wakeup;
 +	bus-width = <4>;
 +	no-1-8-v;
 +	non-removable;
@@ -292,10 +293,10 @@ index 00000000..3038da0
 +#include "imx6sx-sdb-btwifi-m2.dtsi"
 diff --git a/arch/arm/boot/dts/imx6sx-sdb-btwifi-m2.dtsi b/arch/arm/boot/dts/imx6sx-sdb-btwifi-m2.dtsi
 new file mode 100644
-index 00000000..4c7d8d7
+index 00000000..a9ee76e
 --- /dev/null
 +++ b/arch/arm/boot/dts/imx6sx-sdb-btwifi-m2.dtsi
-@@ -0,0 +1,76 @@
+@@ -0,0 +1,77 @@
 +/*
 + * Copyright (C) 2015 Freescale Semiconductor, Inc.
 + *
@@ -359,6 +360,7 @@ index 00000000..4c7d8d7
 +	#size-cells = <0>;
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&pinctrl_usdhc2 &pinctrl_wifi>;
++	enable-sdio-wakeup;
 +	bus-width = <4>;
 +	no-1-8-v;	/* force 3.3V VIO */
 +	non-removable;
@@ -470,7 +472,7 @@ index 00000000..951bce3
 +	interrupt-names = "host-wake";
 +};
 diff --git a/arch/arm/boot/dts/imx6ul-evk-btwifi.dtsi b/arch/arm/boot/dts/imx6ul-evk-btwifi.dtsi
-index b3dfefe..a9ccd29 100644
+index b3dfefe..1c440bb 100644
 --- a/arch/arm/boot/dts/imx6ul-evk-btwifi.dtsi
 +++ b/arch/arm/boot/dts/imx6ul-evk-btwifi.dtsi
 @@ -22,17 +22,16 @@
@@ -493,7 +495,7 @@ index b3dfefe..a9ccd29 100644
  		>;
  	};
  };
-@@ -42,21 +41,19 @@
+@@ -42,21 +41,20 @@
  };
  
  &uart2 {
@@ -507,6 +509,7 @@ index b3dfefe..a9ccd29 100644
  	pinctrl-names = "default";
 -	pinctrl-0 = <&pinctrl_usdhc1>;
 +	pinctrl-0 = <&pinctrl_usdhc1 &pinctrl_wifi>;
++	enable-sdio-wakeup;
  	no-1-8-v;
  	non-removable;
  	pm-ignore-notify;
@@ -532,3 +535,43 @@ index 00000000..ad0c048
 +++ b/arch/arm/boot/dts/imx6ull-14x14-evk-btwifi-m2.dts
 @@ -0,0 +1 @@
 +#include "imx6ull-14x14-evk-btwifi.dts"
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+index 50487c7..6800eb5 100755
+--- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+@@ -367,12 +367,13 @@
+ 	pinctrl-0 = <&pinctrl_usdhc1>, <&pinctrl_usdhc1_gpio>;
+ 	pinctrl-1 = <&pinctrl_usdhc1_100mhz>, <&pinctrl_usdhc1_gpio>;
+ 	pinctrl-2 = <&pinctrl_usdhc1_200mhz>, <&pinctrl_usdhc1_gpio>;
++	enable-sdio-wakeup;
+ 	bus-width = <4>;
+ 	vmmc-supply = <&reg_sd1_vmmc>;
+ 	pm-ignore-notify;
+ 	keep-power-in-suspend;
+ 	non-removable;
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &usdhc2 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
+index c1fa470..cdbe196 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
+@@ -901,6 +901,7 @@
+ 	pinctrl-0 = <&pinctrl_usdhc1>, <&pinctrl_wlan>;
+ 	pinctrl-1 = <&pinctrl_usdhc1_100mhz>, <&pinctrl_wlan>;
+ 	pinctrl-2 = <&pinctrl_usdhc1_200mhz>, <&pinctrl_wlan>;
++	enable-sdio-wakeup;
+ 	bus-width = <4>;
+ 	pm-ignore-notify;
+ 	keep-power-in-suspend;
+@@ -908,7 +909,7 @@
+ 	cap-power-off-card;
+ 	/delete-property/ vmmc-supply;
+ 	mmc-pwrseq = <&usdhc1_pwrseq>;
+-	status = "okay";
++	status = "disabled";
+ 
+ 	brcmf: bcrmf@1 {
+ 		reg = <1>;
