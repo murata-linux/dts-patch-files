@@ -559,7 +559,7 @@ index d5eb439..df1442b 100644
  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk-root.dtb imx8mn-ddr4-evk-inmate.dtb imx8mn-evk-root.dtb imx8mn-evk-inmate.dtb
 diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk-m2.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk-m2.dts
 new file mode 100755
-index 00000000..1762262
+index 00000000..0854395
 --- /dev/null
 +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk-m2.dts
 @@ -0,0 +1,1070 @@
@@ -937,7 +937,7 @@ index 00000000..1762262
 +	pm-ignore-notify;
 +	keep-power-in-suspend;
 +	non-removable;
-+	# Murata: Disabling 1PJ onboard module
++	/* Murata: Disabling 1PJ onboard module */
 +	status = "disabled";
 +};
 +
@@ -1635,10 +1635,10 @@ index 00000000..1762262
 +};
 diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk-m2.dts b/arch/arm64/boot/dts/freescale/imx8mn-evk-m2.dts
 new file mode 100644
-index 00000000..cc28707
+index 00000000..47a99f0
 --- /dev/null
 +++ b/arch/arm64/boot/dts/freescale/imx8mn-evk-m2.dts
-@@ -0,0 +1,997 @@
+@@ -0,0 +1,998 @@
 +/*
 + * Copyright 2019 NXP
 + *
@@ -2549,6 +2549,7 @@ index 00000000..cc28707
 +	cap-power-off-card;
 +	/delete-property/ vmmc-supply;
 +	mmc-pwrseq = <&usdhc1_pwrseq>;
++	/* Disabling onboard 1MW */
 +	status = "disabled";
 +
 +	brcmf: bcrmf@1 {
